@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import com.example.masterdesignpatterns.abstracfactorypattern.FactoryGenerator
 import com.example.masterdesignpatterns.databinding.ActivityMainBinding
 import com.example.masterdesignpatterns.factorypattern.Baguette
 import com.example.masterdesignpatterns.factorypattern.BreadFactory
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        exampleFactoryPatter()
+//        exampleFactoryPatter()
+//        exampleAbstractFactoryPatter()
         return super.onCreateView(name, context, attrs)
     }
 
@@ -31,5 +33,16 @@ class MainActivity : AppCompatActivity() {
         val baguette = (bread as? Baguette)
         Log.i(TAG, "onCreate: ${baguette?.toString()}")
         binding?.activityMainLabelPrincipal?.text = baguette?.name()
+    }
+
+    private fun exampleAbstractFactoryPatter() {
+        val factory = FactoryGenerator.getFactory("BRE".uppercase())
+        val baguette = factory?.getBread("bat".uppercase())
+
+        val filling = FactoryGenerator.getFactory("Fil".uppercase())?.getFilling("che".uppercase())
+        val drink = FactoryGenerator.getFactory("Dri".uppercase())?.getDrink("cok".uppercase())
+
+        Log.i(TAG, "onCreate: Bread = ${baguette?.toString()}, Filling = ${filling.toString()}, Drink = ${drink.toString()}")
+        binding?.activityMainLabelPrincipal?.text = "Pan: ${baguette?.name()}, relleno: ${filling?.name()}, bebida: ${drink?.name()}"
     }
 }
