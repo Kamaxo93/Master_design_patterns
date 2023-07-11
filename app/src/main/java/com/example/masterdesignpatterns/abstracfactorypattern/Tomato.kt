@@ -1,9 +1,10 @@
 package com.example.masterdesignpatterns.abstracfactorypattern
 
-class SlicedBread : Bread {
-    override fun name(): String = "Sliced Bread"
+class Tomato: Filling {
 
-    override fun calories(): String = " : 235 kcal"
+    override fun name(): String = "Tomato"
+
+    override fun calories(): String = " : 15 kcal"
 
     override fun toString(): String {
         return "${name()} ${calories()}"

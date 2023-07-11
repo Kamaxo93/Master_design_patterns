@@ -1,12 +1,16 @@
 package com.example.masterdesignpatterns.abstracfactorypattern
 
-class BreadFactory {
+class BreadFactory : AbstractFactory() {
 
-    fun getBread(breadType: String): Bread? =
+    override fun getBread(breadType: String?): Bread? =
         when(breadType) {
             "BAT" -> Baguette()
             "SLI" -> SlicedBread()
             "ROL" -> Roll()
             else -> null
         }
+
+    override fun getFilling(fillingType: String?): Filling? = null
+
+    override fun getDrink(drinkType: String?): Drink? = null
 }
