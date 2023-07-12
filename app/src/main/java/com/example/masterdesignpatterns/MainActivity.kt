@@ -16,6 +16,8 @@ import com.example.masterdesignpatterns.builderpattern.getCalories
 import com.example.masterdesignpatterns.databinding.ActivityMainBinding
 import com.example.masterdesignpatterns.factorypattern.Baguette
 import com.example.masterdesignpatterns.factorypattern.BreadFactory
+import com.example.masterdesignpatterns.singletonpattern.User
+import com.example.masterdesignpatterns.singletonpattern.UserUtils
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -30,8 +32,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
 //        exampleFactoryPatter()
 //        exampleAbstractFactoryPatter()
-        exampleBuilderPatterns()
+//        exampleBuilderPatterns()
+//        exampleSingletonPattern()
         return super.onCreateView(name, context, attrs)
+    }
+
+    private fun exampleSingletonPattern() {
+        val userUtils = UserUtils.getUser()
+        val user = User()
+        userUtils.name = "Hector Camacho"
+        binding?.activityMainLabelPrincipal?.text = "Hello $user"
+        binding?.activityMainLabelPrincipal?.text = "Hello $userUtils"
+        Log.i(TAG, "exampleSingletonPattern: ${user.name}")
+        Log.i(TAG, "exampleSingletonPattern: ${userUtils.name}")
     }
 
     private fun exampleBuilderPatterns() {
