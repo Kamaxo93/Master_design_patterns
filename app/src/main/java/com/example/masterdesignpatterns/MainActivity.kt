@@ -7,6 +7,12 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import com.example.masterdesignpatterns.abstracfactorypattern.FactoryGenerator
+import com.example.masterdesignpatterns.builderpattern.Cheese
+import com.example.masterdesignpatterns.builderpattern.Sandwich
+import com.example.masterdesignpatterns.builderpattern.SandwichBuilder
+import com.example.masterdesignpatterns.builderpattern.SlicedBread
+import com.example.masterdesignpatterns.builderpattern.Tomato
+import com.example.masterdesignpatterns.builderpattern.getCalories
 import com.example.masterdesignpatterns.databinding.ActivityMainBinding
 import com.example.masterdesignpatterns.factorypattern.Baguette
 import com.example.masterdesignpatterns.factorypattern.BreadFactory
@@ -24,7 +30,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
 //        exampleFactoryPatter()
 //        exampleAbstractFactoryPatter()
+        exampleBuilderPatterns()
         return super.onCreateView(name, context, attrs)
+    }
+
+    private fun exampleBuilderPatterns() {
+        val sandwich = SandwichBuilder.cheeseAndHam()
+        sandwich.getIngredients()
+        SandwichBuilder.addIngredientBuild(sandwich, Tomato())
+        SandwichBuilder.removeIngredientBuild(sandwich, Cheese())
+        sandwich.getIngredients()
+        SandwichBuilder.removeIngredientBuild(sandwich, SlicedBread())
+        sandwich.addIngredient(com.example.masterdesignpatterns.builderpattern.Baguette())
+        sandwich.getCalories()
+        binding?.activityMainLabelPrincipal?.text = sandwich.getIngredients()
     }
 
     private fun exampleFactoryPatter() {
